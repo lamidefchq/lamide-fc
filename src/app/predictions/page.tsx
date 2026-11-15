@@ -1,0 +1,9 @@
+"use client";
+import { useState } from "react";
+import { SectionTitle } from "@/components/section-title";
+const games = [{home:"Manchester City",away:"Fulham"},{home:"Newcastle United",away:"Arsenal"},{home:"Liverpool",away:"Manchester United"}];
+export default function PredictionsPage() {
+ const [picks,setPicks]=useState<Record<number,string>>({});
+ const [saved,setSaved]=useState(false);
+ return <div className="mx-auto max-w-4xl px-4 py-12"><SectionTitle eyebrow="Back your knowledge" title="Match Predictions" detail="Pick your outcomes and build your reputation. No money, no betting — just football knowledge."/><div className="mb-5 rounded-xl border border-[#6b5428] bg-[#201a0e] p-4 text-sm text-[#d5c49a]">Demo prediction mode. Picks are not saved to an account or scored against real results yet.</div><div className="space-y-4">{games.map((g,i)=><div key={i} className="panel p-5"><p className="eyebrow">Premier League · fixture {i+1}</p><div className="mt-3 grid grid-cols-[1fr_auto_1fr] items-center gap-3"><span className="text-sm font-bold">{g.home}</span><span className="text-xs text-[#8c8579]">VS</span><span className="text-right text-sm font-bold">{g.away}</span></div><div className="mt-4 grid grid-cols-3 gap-2">{[g.home,"Draw",g.away].map(option=><button key={option} onClick={()=>{setPicks({...picks,[i]:option});setSaved(false)}} className={`rounded-lg border px-2 py-3 text-xs ${picks[i]===option?"border-[#C9A44C] bg-[#C9A44C]/10 text-[#C9A44C]":"border-[#3b372e] text-[#c9c3b8]"}`}>{option}</button>)}</div></div>)}</div><button onClick={()=>setSaved(true)} disabled={Object.keys(picks).length!==games.length} className="btn-gold mt-5 w-full disabled:opacity-40">Submit predictions</button>{saved&&<p className="mt-3 text-center text-sm text-[#C9A44C]">Your demo picks have been recorded for this session.</p>}</div>;
+}

@@ -1,0 +1,40 @@
+{
+  "name": "LAMIDE FC",
+  "tagline": "FOOTBALL WITHOUT FILTERS.",
+  "status": "starter implementation",
+  "included": [
+    "package.json",
+    "tsconfig.json",
+    "next.config.ts",
+    "postcss.config.mjs",
+    "tailwind.config.ts",
+    ".env.example",
+    "src/lib/demo-data.ts",
+    "src/lib/supabase.ts",
+    "src/lib/supabase-server.ts",
+    "src/app/globals.css",
+    "src/app/layout.tsx",
+    "src/components/site-header.tsx",
+    "src/components/site-footer.tsx",
+    "src/components/section-title.tsx",
+    "src/components/post-feed.tsx",
+    "src/components/poll-card.tsx",
+    "src/app/page.tsx",
+    "src/app/banter/page.tsx",
+    "src/app/hot-takes/page.tsx",
+    "src/app/matches/page.tsx",
+    "src/app/news/page.tsx",
+    "src/app/transfers/page.tsx",
+    "src/app/predictions/page.tsx",
+    "src/app/about/page.tsx",
+    "src/app/login/page.tsx",
+    "src/app/signup/page.tsx",
+    "src/app/api/football/route.ts",
+    "supabase/migrations/0001_initial_schema.sql",
+    "README.md"
+  ],
+  "requires_credentials_for": [
+    "Supabase authentication and persistence",
+    "football-data live match data"
+  ]
+}

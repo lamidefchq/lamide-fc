@@ -1,0 +1,4 @@
+import { SectionTitle } from "@/components/section-title";
+import { PollCard } from "@/components/poll-card";
+import { demoPolls } from "@/lib/demo-data";
+export default function HotTakesPage() { return <div className="mx-auto max-w-6xl px-4 py-12"><SectionTitle eyebrow="No fence-sitting" title="Hot Takes & Debates" detail="Pick a side, make your case and let the community decide."/><div className="grid gap-5 md:grid-cols-2">{demoPolls.map(p=><PollCard key={p.id} {...p}/>)}</div><div className="panel mt-8 p-6"><p className="eyebrow">This week's debate</p><h2 className="mt-2 text-2xl font-black">What separates a good Premier League team from a title-winning team?</h2><p className="mt-3 text-sm leading-6 text-[#9c968b]">Is it squad depth, consistency, tactical flexibility or mentality? Bring your argument to the Banter Room.</p></div></div>; }

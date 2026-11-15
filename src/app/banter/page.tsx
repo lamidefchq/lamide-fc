@@ -1,0 +1,3 @@
+import { PostFeed } from "@/components/post-feed";
+import { SectionTitle } from "@/components/section-title";
+export default function BanterPage() { return <div className="mx-auto max-w-4xl px-4 py-12"><SectionTitle eyebrow="The supporters' stand" title="The Banter Room" detail="Say what you think. Back it up. Keep it football."/><div className="mb-6 flex flex-wrap gap-2">{["All discussions","Premier League","Arsenal","Chelsea","Liverpool","Manchester City","Manchester United","Spurs","Hot takes"].map(x=><span key={x} className="rounded-full border border-[#39352c] px-3 py-2 text-xs text-[#c9c3b8]">{x}</span>)}</div><PostFeed/></div>; }
