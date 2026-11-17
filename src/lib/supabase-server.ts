@@ -1,5 +1,4 @@
-```typescript
-import { createServerClient, type CookieOptions } from "@supabase/ssr";
+import.{ createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
 export async function createSupabaseServerClient() {
@@ -29,10 +28,8 @@ export async function createSupabaseServerClient() {
           });
         } catch {
           // Server components cannot always write cookies.
-          // Middleware and server actions handle refresh.
         }
       },
     },
   });
-}
-```
+}.
