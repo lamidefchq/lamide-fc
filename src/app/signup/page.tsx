@@ -3,7 +3,15 @@ import Link from "next/link";
 import { useState } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase";
 export default function SignupPage() {
- const [name,setName]=useState("");const [username,setUsername]=useState("");const [email,setEmail]=useState("");const [password,setPassword]=useState("");const [club,setClub]=useState("Arsenal");const [message,setMessage]=useState("");const [busy,setBusy]=useState(false);
- async function submit(e:React.FormEvent){e.preventDefault();const supabase=createSupabaseBrowserClient();if(!supabase){setMessage("Demo setup: add your Supabase URL and anon key to .env.local to enable account creation.");return;}setBusy(true);const {error}=await supabase.auth.signUp({email,password,options:{data:{full_name:name,username,favourite_club:club}}});setMessage(error?.message||"Account request submitted. Check your email to confirm your account.");setBusy(false);}
- return <div className="mx-auto max-w-lg px-4 py-14"><div className="panel p-7"><p className="eyebrow">Join the supporters' stand</p><h1 className="mt-2 text-3xl font-black">Become a member.</h1><p className="mt-2 text-sm text-[#96928a]">Create your LAMIDE FC identity and rep your club.</p><form onSubmit={submit} className="mt-6 grid gap-4"><label className="text-sm">Full name<input required value={name} onChange={e=>setName(e.target.value)} className="mt-2 w-full rounded-lg border border-[#39352c] bg-[#0b0b0b] p-3"/></label><label className="text-sm">Username<input required minLength={3} value={username} onChange={e=>setUsername(e.target.value)} className="mt-2 w-full rounded-lg border border-[#39352c] bg-[#0b0b0b] p-3"/></label><label className="text-sm">Email<input required type="email" value={email} onChange={e=>setEmail(e.target.value)} className="mt-2 w-full rounded-lg border border-[#39352c] bg-[#0b0b0b] p-3"/></label><label className="text-sm">Password<input required minLength={8} type="password" value={password} onChange={e=>setPassword(e.target.value)} className="mt-2 w-full rounded-lg border border-[#39352c] bg-[#0b0b0b] p-3"/></label><label className="text-sm">Favourite club<select value={club} onChange={e=>setClub(e.target.value)} className="mt-2 w-full rounded-lg border border-[#39352c] bg-[#0b0b0b] p-3">{["Arsenal","Aston Villa","Bournemouth","Brentford","Brighton","Burnley","Chelsea","Crystal Palace","Everton","Fulham","Liverpool","Manchester City","Manchester United","Newcastle United","Nottingham Forest","Sunderland","Tottenham","West Ham","Wolves"].map(c=><option key={c}>{c}</option>)}</select></label><button disabled={busy} className="btn-gold mt-2">{busy?"Creating account...":"Create my account"}</button></form>{message&&<p className="mt-4 text-sm text-[#C9A44C]">{message}</p>}<p className="mt-5 text-sm text-[#96928a]">Already a member? <Link href="/login" className="text-[#C9A44C]">Log in</Link></p></div></div>;
-}
+const { error } = await supabase.auth.signUp({
+  email,
+  password,
+  options: {
+    emailRedirectTo: `${window.location.origin}/login`,
+    data: {
+      full_name: name,
+      username,
+      favourite_club: club
+    }
+  }
+});
